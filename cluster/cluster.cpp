@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <cstdio>
 #include "cluster.h"
 #include "../process/process.h"
 
@@ -31,6 +32,7 @@ void cluster::randomizeTraitors() {
 
 void cluster::flipCoin() {
     this->coin = rand() % 2;
+    // fprintf(stderr, "Coin: %d\n", this->coin);
 }
 
 bool cluster::checkConsensus() {

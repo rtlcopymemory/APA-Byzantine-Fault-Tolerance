@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "cluster.h"
+#include "../process/process.h"
 
 cluster::cluster(int processes, int traitors) {
     this->processes = processes;
@@ -24,6 +25,10 @@ void cluster::randomizeTraitors() {
     }
 }
 
+void cluster::flipCoin() {
+    this->coin = rand() % 2;
+}
+
 bool cluster::checkConsensus() {
     int startRange = this->processes - this->traitors;
     int check = this->interProcessArray[0];
@@ -35,23 +40,24 @@ bool cluster::checkConsensus() {
 
 void cluster::allSameLoyal() {
     int startRange = this->processes - this->traitors;
-    for (int i = 1; i < startRange; ++i) {
+    for (int i = 1; i < startRange; ++i)
         this->interProcessArray[i] = 1;
-    }
 }
 
 void cluster::randomLoyal() {
     int startRange = this->processes - this->traitors;
-    for (int i = 1; i < startRange; ++i) {
+    for (int i = 1; i < startRange; ++i)
         this->interProcessArray[i] = rand() % 2;
-    }
 }
 
 int cluster::run() {
+    this->allSameLoyal();  // Switch to test the other case: allSameLoyal(), randomLoyal()
     while (!this->checkConsensus()) {
+        this->flipCoin();
         this->randomizeTraitors();
-        this->allSameLoyal();  // Switch to test the other case: allSameLoyal(), randomLoyal()
-        // TODO: Run process(this->interProcessArray, i);
+        // TODO: Run process::run(int *replies, int size, int index, int traitors, int coin); this->loyal times
+        for (int i = 0; i < this->processes - this->traitors; ++i)
+            process::run(this->interProcessArray, this->processes, i, traitors, coin);
     }
     return -1;
 }

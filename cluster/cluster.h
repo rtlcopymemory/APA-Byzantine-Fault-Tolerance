@@ -12,8 +12,11 @@ private:
     int *interProcessArray;
     int processes;
     int traitors;
+    int coin;
 
     void randomizeTraitors();
+
+    void flipCoin();
 
     bool checkConsensus();
 

@@ -4,11 +4,14 @@
 
 #include <cstdlib>
 #include <cstdio>
+#include <cstring>
 #include "cluster/cluster.h"
 
 int main(int argc, char *argv[]) {
     if (argc < 4) {
-        printf("Error: Missing argument\nUsage: %s <runs> <total number of processes> <traitor processes>\n", argv[0]);
+        printf("Error: Missing argument\n");
+        printf("Usage: %s <runs> <total number of processes> <traitor processes> [-b]\n", argv[0]);
+        printf("-b:\tforces the worst case scenario\n");
         exit(1);
     }
 
@@ -26,7 +29,12 @@ int main(int argc, char *argv[]) {
     }
 
     if (runs < 1) {
-        printf("Runs must be a positive number");
+        printf("Runs must be a positive number\n");
+        exit(1);
+    }
+
+    if (argc > 4 && strcmp("-b", argv[4]) != 0) {
+        printf("Argument not recognized: %s\n", argv[4]);
         exit(1);
     }
 
@@ -34,7 +42,7 @@ int main(int argc, char *argv[]) {
     auto simulation = new cluster(processes, traitors);
     int rounds = 0;
     for (int i = 0; i < runs; ++i) {
-        rounds = simulation->run(false, true);
+        rounds = simulation->run(false, argc > 4);
         printf("Run %d\tRounds: %d\n", i + 1, rounds);
     }
     return 0;

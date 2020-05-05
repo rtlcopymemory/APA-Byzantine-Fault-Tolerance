@@ -14,5 +14,8 @@ make
 ## How to run
 From the build folder:
 ```sh
-./byzantine <runs> <total number of processes> <number of traitors>
+./byzantine <runs> <total number of processes> <number of traitors> [-b]
 ```
+
+The `-b` option enables the worst case scenario which is where the traitors make the most damage making the loyal processes disagree on the tally(i)
+

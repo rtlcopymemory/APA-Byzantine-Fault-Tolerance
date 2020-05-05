@@ -15,7 +15,7 @@ cluster::cluster(int processes, int traitors) {
     this->traitors = traitors;
     this->interProcessArray = new int[processes];
     this->coin = 0;
-    srand(time(nullptr));
+    srand(time(NULL));
 }
 
 cluster::~cluster() {

@@ -1,2 +1,2 @@
-# APA-Byzantine-Fault-Tollerance
+# APA-Byzantine-Fault-Tolerance
 Class Assignment

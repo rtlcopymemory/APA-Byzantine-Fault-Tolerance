@@ -25,7 +25,7 @@ cluster::~cluster() {
 void cluster::randomizeTraitors() {
     int startRange = this->processes - this->traitors;
     for (int i = startRange; i < this->processes; ++i) {
-        this->interProcessArray[i] = rand() % 2; // 0 or 1
+        this->interProcessArray[i] = rand() & 1; // 0 or 1
     }
 }
 

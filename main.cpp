@@ -12,9 +12,9 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    int processes = (int) strtol(argv[1], nullptr, 10);
-    int traitors = (int) strtol(argv[2], nullptr, 10);
-    int runs = (int) strtol(argv[3], nullptr, 10);
+    int runs = (int) strtol(argv[1], nullptr, 10);
+    int processes = (int) strtol(argv[2], nullptr, 10);
+    int traitors = (int) strtol(argv[3], nullptr, 10);
     if (processes < (3 * traitors + 1)) {
         printf("It is impossible for the reliable processes to reach a consensus\n");
         exit(0);
@@ -32,5 +32,7 @@ int main(int argc, char *argv[]) {
 
     // Checks passed
     auto simulation = new cluster(processes, traitors);
+    int rounds = simulation->run();
+    printf("Rounds: %d\n", rounds);
     return 0;
 }

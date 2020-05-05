@@ -32,7 +32,10 @@ int main(int argc, char *argv[]) {
 
     // Checks passed
     auto simulation = new cluster(processes, traitors);
-    int rounds = simulation->run(false);
-    printf("Rounds: %d\n", rounds);
+    int rounds = 0;
+    for (int i = 0; i < runs; ++i) {
+        rounds = simulation->run(false);
+        printf("Run %d\tRounds: %d\n", i + 1, rounds);
+    }
     return 0;
 }

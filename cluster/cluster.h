@@ -24,6 +24,8 @@ private:
 
     void randomLoyal();
 
+    void forceWorstScenario();
+
 public:
     cluster(int processes, int traitors);
 
@@ -31,7 +33,7 @@ public:
 
     // Runs the processes n times randomizing the traitors at every run
     // RETURNS: number of rounds needed
-    int run(bool allLoyalSameInit);
+    int run(bool allLoyalSameInit, bool forceBadScenario);
 };
 
 

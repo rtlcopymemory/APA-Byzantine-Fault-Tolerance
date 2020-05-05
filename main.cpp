@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
     auto simulation = new cluster(processes, traitors);
     int rounds = 0;
     for (int i = 0; i < runs; ++i) {
-        rounds = simulation->run(false);
+        rounds = simulation->run(false, true);
         printf("Run %d\tRounds: %d\n", i + 1, rounds);
     }
     return 0;

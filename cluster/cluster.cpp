@@ -55,30 +55,30 @@ void cluster::randomLoyal() {
         this->interProcessArray[i] = rand() % 2;
 }
 
-//void printArray(int *array, int size) {
-//    printf("[");
-//    for (int i = 0; i < size; ++i) {
-//        printf("%d, ", array[i]);
-//    }
-//    printf("]\n");
-//}
+void cluster::forceWorstScenario() {
+    static int count = 0;
+    int startRange = this->processes - this->traitors;
+    for (int i = startRange; i < this->processes; ++i)
+        this->interProcessArray[i] = count % 2;
+    count++;
+}
 
-int cluster::run(bool allLoyalSameInit = false) {
+int cluster::run(bool allLoyalSameInit = false, bool forceBadScenario = false) {
     if (allLoyalSameInit)
         this->allSameLoyal();
     else
         this->randomLoyal();
     int rounds = 0;
-    // printArray(this->interProcessArray, this->processes - this->traitors);
     while (!this->checkConsensus()) {
         rounds++;
         this->flipCoin();
         // Run process::run(int *replies, int size, int index, int traitors, int coin); this->loyal times
         for (int i = 0; i < this->processes - this->traitors; ++i) {
             this->randomizeTraitors();
+            if (forceBadScenario)
+                this->forceWorstScenario();
             process::run(this->interProcessArray, this->processes, i, this->traitors, this->coin);
         }
-        // printArray(this->interProcessArray, this->processes - this->traitors);
     }
     return rounds;
 }

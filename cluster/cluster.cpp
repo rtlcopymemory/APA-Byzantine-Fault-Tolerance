@@ -30,7 +30,7 @@ void cluster::randomizeTraitors() {
 }
 
 void cluster::flipCoin() {
-    this->coin = rand() % 2;
+    this->coin = rand() & 1;
 }
 
 bool cluster::checkConsensus() {
@@ -51,7 +51,7 @@ void cluster::allSameLoyal() {
 void cluster::randomLoyal() {
     int startRange = this->processes - this->traitors;
     for (int i = 1; i < startRange; ++i)
-        this->interProcessArray[i] = rand() % 2;
+        this->interProcessArray[i] = rand() & 1;
 }
 
 int cluster::run(bool allLoyalSameInit = false) {

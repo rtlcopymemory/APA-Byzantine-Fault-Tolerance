@@ -5,12 +5,18 @@
 #include "process.h"
 
 int process::maj(const int *replies, int size, int &tally) {
-    int numberOfOnes = 0;
+    tally = 0;
     for (int i = 0; i < size; ++i) {
         if (replies[i])
-            ++numberOfOnes;
+            ++tally;
     }
-    return numberOfOnes > (size / 2) ? 1 : 0;
+
+    if (tally <= (size / 2)) {
+        tally = size - tally;
+        return 0;
+    }
+
+    return 1;
 }
 
 void process::run(int *replies, const int size, const int index, const int traitors, const int coin) {

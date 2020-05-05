@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/cluster/cluster.cpp
+cstdlib
+-
+ctime
+-
+cluster.h
+/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/cluster/cluster.h
+../process/process.h
+/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/process/process.h
+
+/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/cluster/cluster.h
+
+/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/main.cpp
+cstdlib
+-
+cstdio
+-
+cluster/cluster.h
+/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/cluster/cluster.h
+
+/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/process/process.h
+

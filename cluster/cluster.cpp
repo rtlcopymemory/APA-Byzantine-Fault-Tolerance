@@ -63,10 +63,11 @@ int cluster::run(bool allLoyalSameInit = false) {
     while (!this->checkConsensus()) {
         rounds++;
         this->flipCoin();
-        this->randomizeTraitors();
         // Run process::run(int *replies, int size, int index, int traitors, int coin); this->loyal times
-        for (int i = 0; i < this->processes - this->traitors; ++i)
-            process::run(this->interProcessArray, this->processes, i, traitors, coin);
+        for (int i = 0; i < this->processes - this->traitors; ++i) {
+            this->randomizeTraitors();
+            process::run(this->interProcessArray, this->processes, i, this->traitors, this->coin);
+        }
     }
     return rounds;
 }

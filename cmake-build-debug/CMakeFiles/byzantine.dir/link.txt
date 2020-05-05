@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/byzantine.dir/main.cpp.o CMakeFiles/byzantine.dir/cluster/cluster.cpp.o CMakeFiles/byzantine.dir/process/process.cpp.o  -o byzantine 

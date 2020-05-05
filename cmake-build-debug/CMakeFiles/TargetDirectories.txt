@@ -1,3 +1,0 @@
-/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/cmake-build-debug/CMakeFiles/byzantine.dir
-/home/wolfctl/git/APA-Byzantine-Fault-Tolerance/cmake-build-debug/CMakeFiles/edit_cache.dir

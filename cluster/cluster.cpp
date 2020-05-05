@@ -25,9 +25,8 @@ cluster::~cluster() {
 
 void cluster::randomizeTraitors() {
     int startRange = this->processes - this->traitors;
-    for (int i = startRange; i < this->processes; ++i) {
+    for (int i = startRange; i < this->processes; ++i)
         this->interProcessArray[i] = rand() % 2; // 0 or 1
-    }
 }
 
 void cluster::flipCoin() {
@@ -56,12 +55,21 @@ void cluster::randomLoyal() {
         this->interProcessArray[i] = rand() % 2;
 }
 
+//void printArray(int *array, int size) {
+//    printf("[");
+//    for (int i = 0; i < size; ++i) {
+//        printf("%d, ", array[i]);
+//    }
+//    printf("]\n");
+//}
+
 int cluster::run(bool allLoyalSameInit = false) {
     if (allLoyalSameInit)
         this->allSameLoyal();
     else
         this->randomLoyal();
     int rounds = 0;
+    // printArray(this->interProcessArray, this->processes - this->traitors);
     while (!this->checkConsensus()) {
         rounds++;
         this->flipCoin();
@@ -70,6 +78,7 @@ int cluster::run(bool allLoyalSameInit = false) {
             this->randomizeTraitors();
             process::run(this->interProcessArray, this->processes, i, this->traitors, this->coin);
         }
+        // printArray(this->interProcessArray, this->processes - this->traitors);
     }
     return rounds;
 }

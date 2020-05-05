@@ -1,3 +1,6 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cert-msc30-c"
+#pragma ide diagnostic ignored "cert-msc32-c"
 //
 // Created by wolfctl on 5/5/20.
 //
@@ -11,7 +14,8 @@ cluster::cluster(int processes, int traitors) {
     this->processes = processes;
     this->traitors = traitors;
     this->interProcessArray = new int[processes];
-    srand(time(NULL));
+    this->coin = 0;
+    srand(time(nullptr));
 }
 
 cluster::~cluster() {
@@ -52,12 +56,16 @@ void cluster::randomLoyal() {
 
 int cluster::run() {
     this->allSameLoyal();  // Switch to test the other case: allSameLoyal(), randomLoyal()
+    int rounds = 0;
     while (!this->checkConsensus()) {
+        rounds++;
         this->flipCoin();
         this->randomizeTraitors();
-        // TODO: Run process::run(int *replies, int size, int index, int traitors, int coin); this->loyal times
+        // Run process::run(int *replies, int size, int index, int traitors, int coin); this->loyal times
         for (int i = 0; i < this->processes - this->traitors; ++i)
             process::run(this->interProcessArray, this->processes, i, traitors, coin);
     }
-    return -1;
+    return rounds;
 }
+
+#pragma clang diagnostic pop

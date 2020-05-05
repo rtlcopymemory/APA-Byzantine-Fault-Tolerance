@@ -33,9 +33,25 @@ bool cluster::checkConsensus() {
     return true;
 }
 
+void cluster::allSameLoyal() {
+    int startRange = this->processes - this->traitors;
+    for (int i = 1; i < startRange; ++i) {
+        this->interProcessArray[i] = 1;
+    }
+}
+
+void cluster::randomLoyal() {
+    int startRange = this->processes - this->traitors;
+    for (int i = 1; i < startRange; ++i) {
+        this->interProcessArray[i] = rand() % 2;
+    }
+}
+
 int cluster::run() {
-    // while the trusted processes are not on the same value
-    this->randomizeTraitors();
-    // initialize either all to the same or all random
-    // TODO: Run process(this->interProcessArray, i);
+    while (!this->checkConsensus()) {
+        this->randomizeTraitors();
+        this->allSameLoyal();  // Switch to test the other case: allSameLoyal(), randomLoyal()
+        // TODO: Run process(this->interProcessArray, i);
+    }
+    return -1;
 }

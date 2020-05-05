@@ -17,6 +17,10 @@ private:
 
     bool checkConsensus();
 
+    void allSameLoyal();
+
+    void randomLoyal();
+
 public:
     cluster(int processes, int traitors);
 

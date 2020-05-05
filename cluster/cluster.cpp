@@ -54,8 +54,11 @@ void cluster::randomLoyal() {
         this->interProcessArray[i] = rand() % 2;
 }
 
-int cluster::run() {
-    this->allSameLoyal();  // Switch to test the other case: allSameLoyal(), randomLoyal()
+int cluster::run(bool allLoyalSameInit = false) {
+    if (allLoyalSameInit)
+        this->allSameLoyal();
+    else
+        this->randomLoyal();
     int rounds = 0;
     while (!this->checkConsensus()) {
         rounds++;

@@ -31,7 +31,7 @@ public:
 
     // Runs the processes n times randomizing the traitors at every run
     // RETURNS: number of rounds needed
-    int run();
+    int run(bool allLoyalSameInit);
 };
 
 

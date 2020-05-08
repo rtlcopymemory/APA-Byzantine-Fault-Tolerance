@@ -19,3 +19,5 @@ From the build folder:
 
 The `-b` option enables the worst case scenario which is where the traitors make the most damage making the loyal processes disagree on the tally(i)
 
+## To fix
+- The algorithm is actually usually values that update during the round since I edit the array from the "process" itself then use the same array for the other processes
